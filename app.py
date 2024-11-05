@@ -4,10 +4,13 @@ from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import google.generativeai as genai
 import time
 from flask import Flask, render_template, request, jsonify
+from dotenv import load_dotenv
 
+# Load environment variables
+load_dotenv()
 
 # Set your Gemini API key
-os.environ["GEMINI_API_KEY"] = "YOUR API"  # Replace with your actual API key
+genai.api_key = os.getenv("GEMINI_API_KEY")
 
 # Create the model
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
