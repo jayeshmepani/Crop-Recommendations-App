@@ -1,23 +1,16 @@
 $(document).ready(function () {
-    $('#nutrient-form').submit(function (event) {
+    $('#cropForm').submit(function (event) {
         event.preventDefault();
 
         // Gather form data
         var formData = {
-            'age': $('#age').val(),
-            'gender': $('#gender').val(),
-            'height': $('#height').val(),
-            'weight': $('#weight').val(),
-            'activity_level': $('#activity_level').val(),
-            'pregnancy_or_lactation': $('#pregnancy_or_lactation').val(),
-            'health_condition': $('#health_condition').val(),
-            'dietary_preferences': $('#dietary_preferences').val()
+            'place': $('#place').val()
         };
 
         // Send AJAX POST request
         $.ajax({
             type: 'POST',
-            url: '/get_nutrient_recommendations', 
+            url: '/get_crop_recommendation', 
             contentType: 'application/json',
             data: JSON.stringify(formData),
             beforeSend: function() {

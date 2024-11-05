@@ -1,86 +1,22 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nutrient Recommendations</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <style>
-      #pregnancy_or_lactation_container {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <h1>Nutrient Recommendations Form</h1>
-
-      <form id="nutrient-form" method="POST">
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required />
-
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender">
-          <option value="" disabled selected>Choose your option</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-
-        <label for="height">Height (cm):</label>
-        <input type="number" id="height" name="height" required />
-
-        <label for="weight">Weight (kg):</label>
-        <input type="number" id="weight" name="weight" required />
-
-        <div id="pregnancy_or_lactation_container">
-          <label for="pregnancy_or_lactation">Pregnancy or Lactation:</label>
-          <select id="pregnancy_or_lactation" name="pregnancy_or_lactation">
-            <option value="">None</option>
-            <option value="Pregnant">Pregnant</option>
-            <option value="Lactating">Lactating</option>
-          </select>
-        </div><br /><br />
-
-        <label for="health_condition">Health Condition:</label>
-        <input type="text" placeholder="disabilities, disorders, diseases, allergies, injuries, infections, deficiencies, or any other" id="health_condition" name="health_condition" />
-
-        <label for="dietary_preferences">Dietary Preferences:</label>
-        <select id="dietary_preferences" name="dietary_preferences">
-          <option value="Vegetarian">Vegetarian</option>
-          <option value="Vegan">Vegan</option>
-          <option value="Non-Vegetarian">Non-Vegetarian</option>
-        </select><br /><br />
-
-        <label for="activity_level">Activity Level:</label>
-        <select id="activity_level" name="activity_level" placeholder="Activity level is not required for children under the age of the three years.">
-          <option value="sedentary">Sedentary</option>
-          <option value="lightly active">Lightly Active</option>
-          <option value="moderately active">Moderately Active</option>
-          <option value="very active">Very Active</option>
-          <option value="extra active">Extra Active</option>
-        </select><br /><br />
-
-        <button type="submit">Get Recommendations</button>
-      </form>
-      <div id="recommendations"></div>
+        <h1>Crop Recommendation System</h1>
+        <form id="cropForm" method="POST">
+            <label for="place">Enter Place:</label>
+            <input type="text" id="place" name="place" required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+        <div id="recommendations"></div>
     </div>
-
-    <script>
-      document.getElementById('gender').addEventListener('change', function () {
-        const gender = this.value
-        const pregnancyOrLactationContainer = document.getElementById('pregnancy_or_lactation_container')
-      
-        if (gender === 'Female') {
-          pregnancyOrLactationContainer.style.display = 'block'
-        } else {
-          pregnancyOrLactationContainer.style.display = 'none'
-        }
-      })
-    </script>
-
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  </body>
+</body>
 </html>

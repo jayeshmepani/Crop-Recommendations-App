@@ -61,78 +61,10 @@ button:hover {
     }
 }
 
-.section {
+.crop {
     margin-bottom: 20px;
     padding: 10px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-}
-
-
-/* .input-field {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.input-field label {
-    position: absolute;
-    top: -14px;
-    left: 12px;
-    font-size: 0.8em;
-    color: #9e9e9e;
-} */
-
-select {
-    display: block;
-    width: 100%;
-    height: auto;
-    padding: 0.5rem 0.75rem;
-    font-size: 1rem;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    margin-bottom: 20px;
-}
-
-select:focus {
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-/* .recommendations-container {
-    border: 1px solid #ccc;
-    padding: 20px;
-}
-
-.recommendations-container h2,
-.recommendations-container h3 {
-    margin-bottom: 10px;
-} */
-
-
-/* #content {
-    white-space: pre-wrap;
-} */
-
-.category {
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.sub-category {
-    margin-left: 20px;
-    font-style: italic;
-}
-
-.item {
-    margin-left: 40px;
-}
-
-.item-value {
-    color: darkgreen;
 }
