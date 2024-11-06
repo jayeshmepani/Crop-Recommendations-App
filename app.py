@@ -16,9 +16,7 @@ genai.api_key = os.getenv("GEMINI_API_KEY")
 # Create the model
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 generation_config = {
-    "temperature": 0.31,  # Adjust temperature for creativity
-    "top_p": 0.95,       # Adjust top_p for sampling diversity
-    "top_k": 64,          # Adjust top_k for sampling diversity
+    "temperature": 0.5,
     "response_mime_type": "text/plain",
 }
 
@@ -30,7 +28,6 @@ model = genai.GenerativeModel(
         HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
         HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
         HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
-        HarmCategory.HARM_CATEGORY_CIVIC_INTEGRITY: HarmBlockThreshold.BLOCK_NONE,
     },
 )
 
