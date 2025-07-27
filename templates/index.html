@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Crop Recommendation System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-seedling"></i>
+                <span>Smart Crop Advisor</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active" data-section="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#recommendations" class="nav-link" data-section="recommendations">
+                    <i class="fas fa-leaf"></i> Recommendations
+                </a>
+                <a href="#compare" class="nav-link" data-section="compare">
+                    <i class="fas fa-balance-scale"></i> Compare
+                </a>
+            </div>
+            <div class="theme-toggle">
+                <i class="fas fa-moon" id="themeToggle"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <i class="fas fa-seedling"></i>
+                        Smart Crop Recommendation System
+                    </h1>
+                    <p class="hero-subtitle">
+                        Get AI-powered crop recommendations for any crop including exotic fruits like dragon fruit, star
+                        fruit, and specialty vegetables
+                    </p>
+                </div>
+
+                <div class="search-container">
+                    <form id="cropForm" class="search-form">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <i class="fas fa-map-marker-alt input-icon"></i>
+                                <input type="text" id="place" name="place"
+                                    placeholder="Enter your location (e.g., Kutch, Gujarat)" required />
+                            </div>
+                            <div class="input-group">
+                                <i class="fas fa-calendar input-icon"></i>
+                                <!-- Custom Dropdown for Season -->
+                                <div class="custom-dropdown" data-target-input="season">
+                                    <button type="button" class="dropdown-trigger">
+                                        <span>All Seasons</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li data-value="" class="selected">
+                                                <i class="fas fa-seedling"></i> All Seasons
+                                            </li>
+                                            <li data-value="kharif">
+                                                <i class="fas fa-cloud-rain"></i> Kharif (Monsoon Season)
+                                            </li>
+                                            <li data-value="rabi">
+                                                <i class="fas fa-snowflake"></i> Rabi (Winter Season)
+                                            </li>
+                                            <li data-value="zaid">
+                                                <i class="fas fa-sun"></i> Zaid (Summer Season)
+                                            </li>
+                                            <li data-value="perennial">
+                                                <i class="fas fa-leaf"></i> Perennial Crops
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="season" name="season" value="">
+                            </div>
+                        </div>
+
+                        <div id="category-input" class="category-input">
+                            <div class="input-group">
+                                <i class="fas fa-filter input-icon"></i>
+                                <!-- Custom Dropdown for Category -->
+                                <div class="custom-dropdown" data-target-input="category">
+                                    <button type="button" class="dropdown-trigger">
+                                        <span>All Crop Categories</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li data-value="" class="selected">All Crop Categories</li>
+                                            <li data-value="cereals">Cereals (Wheat, Rice, Maize)</li>
+                                            <li data-value="pulses">Pulses (Chickpea, Lentil, Cowpea)</li>
+                                            <li data-value="oilseeds">Oilseeds (Groundnut, Soybean, Mustard)</li>
+                                            <li data-value="fiber_crops">Fiber Crops (Cotton, Jute, Hemp)</li>
+                                            <li data-value="sugar_crops">Sugar Crops (Sugarcane, Sugar Beet, Sweet
+                                                Sorghum)</li>
+                                            <li data-value="fodder_forage">Fodder & Forage (Alfalfa, Napier Grass,
+                                                Maize)</li>
+                                            <li data-value="plantation_crops">Plantation Crops (Tea, Coffee, Coconut)
+                                            </li>
+                                            <li data-value="horticultural_fruits">Fruits (Mango, Banana, Apple)</li>
+                                            <li data-value="horticultural_vegetables">Vegetables (Tomato, Potato, Onion)
+                                            </li>
+                                            <li data-value="horticultural_spices">Spices (Turmeric, Ginger, Cardamom)
+                                            </li>
+                                            <li data-value="medicinal_aromatic">Medicinal & Aromatic (Aloe Vera,
+                                                Ashwagandha, Tulsi)</li>
+                                            <li data-value="nuts_dry_fruits">Nuts & Dry Fruits (Almond, Walnut, Cashew)
+                                            </li>
+                                            <li data-value="exotic_specialty">Exotic & Specialty Crops (Dragon Fruit,
+                                                Avocado, Kiwi)</li>
+                                            <li data-value="fruit_trees_ornamentals">Fruit Trees & Ornamentals (Mango,
+                                                Citrus, Fig)</li>
+                                            <li data-value="leguminous_cover">Leguminous Cover Crops (Cowpea, Cluster
+                                                Bean, Alfalfa)</li>
+                                            <li data-value="root_crops">Root Crops (Cassava, Sweet Potato, Yam)</li>
+                                            <li data-value="tuber_crops">Tuber Crops (Potato, Jerusalem Artichoke,
+                                                Yacon)</li>
+                                            <li data-value="herbs">Herbs (Basil, Mint, Rosemary)</li>
+                                            <li data-value="grasses">Grasses (Lemongrass, Vetiver, Switchgrass)</li>
+                                            <li data-value="aquatic_crops">Aquatic Crops (Watercress, Lotus, Water
+                                                Chestnut)</li>
+                                            <li data-value="forest_crops">Forest Crops (Mushrooms, Wild Berries,
+                                                Ginseng)</li>
+                                            <li data-value="industrial_crops">Industrial Crops (Indigo, Jojoba, Flax)
+                                            </li>
+                                            <li data-value="biofuel_crops">Biofuel Crops (Jatropha, Miscanthus,
+                                                Camelina)</li>
+                                            <li data-value="ornamental_crops">Ornamental Crops (Rose, Orchid, Sunflower)
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Hidden input that holds the actual value for the form -->
+                                <input type="hidden" id="category" name="category" value="">
+                            </div>
+                        </div>
+
+                        <div id="custom-input" class="custom-crop-input">
+                            <div class="input-group">
+                                <i class="fas fa-seedling input-icon"></i>
+                                <input type="text" id="customCrop" name="custom_crop"
+                                    placeholder="Enter specific crop (e.g., dragon fruit, star fruit, avocado)"
+                                    autocomplete="off" />
+                                <div class="suggestions-dropdown" id="suggestions"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-search"></i>
+                            Get Recommendations
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Weather Info Display -->
+                <div id="weatherInfo" class="weather-info" style="display: none;">
+                    <h3><i class="fas fa-cloud-sun"></i> Current Weather Context</h3>
+                    <div class="weather-grid">
+                        <div class="weather-item">
+                            <i class="fas fa-thermometer-half"></i>
+                            <span id="temperature">--</span>
+                        </div>
+                        <div class="weather-item">
+                            <i class="fas fa-tint"></i>
+                            <span id="humidity">--</span>
+                        </div>
+                        <div class="weather-item">
+                            <i class="fas fa-cloud-rain"></i>
+                            <span id="rainfall">--</span>
+                        </div>
+                        <div class="weather-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span id="currentSeason">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section id="recommendations" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-leaf"></i> Crop Recommendations</h2>
+                <div class="section-actions">
+                    <button id="downloadBtn" class="btn btn-secondary" style="display: none;">
+                        <i class="fas fa-download"></i> Download Report
+                    </button>
+                    <button id="printBtn" class="btn btn-secondary" style="display: none;">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+            </div>
+
+            <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing agricultural data and generating personalized recommendations...</p>
+            </div>
+
+            <div id="recommendations-content" class="recommendations-container">
+                <div class="no-data">
+                    <i class="fas fa-seedling"></i>
+                    <h3>No recommendations yet</h3>
+                    <p>Enter your location and preferences to get personalized crop recommendations for any crop
+                        including exotic varieties</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compare Section -->
+        <section id="compare" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-balance-scale"></i> Crop Comparison</h2>
+            </div>
+
+            <div class="compare-container">
+                <div class="compare-form">
+                    <form id="compareForm">
+                        <div class="input-group">
+                            <i class="fas fa-map-marker-alt input-icon"></i>
+                            <input type="text" id="comparePlace" placeholder="Enter location for comparison" required />
+                        </div>
+
+                        <div class="crops-selection">
+                            <h4>Select crops from the list...</h4>
+                            <div class="crops-grid">
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Rice">
+                                    Rice</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Wheat">
+                                    Wheat</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Maize">
+                                    Maize</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Cotton">
+                                    Cotton</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Sugarcane">
+                                    Sugarcane</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Soybean">
+                                    Soybean</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Potato">
+                                    Potato</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Onion">
+                                    Onion</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Tomato">
+                                    Tomato</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Mango">
+                                    Mango</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Banana">
+                                    Banana</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Pomegranate">
+                                    Pomegranate</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Strawberry">
+                                    Strawberry</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Dragon fruit">
+                                    Dragon fruit</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Avocado">
+                                    Avocado</label>
+                                <label class="crop-checkbox"><input type="checkbox" name="crops" value="Blueberry">
+                                    Blueberry</label>
+                            </div>
+                        </div>
+
+                        <div class="crops-selection">
+                            <h4>...or add your own (comma-separated)</h4>
+                            <div class="input-group">
+                                <i class="fas fa-pencil-alt input-icon"></i>
+                                <input type="text" id="customCompareCrops"
+                                    placeholder="e.g., Quinoa, Ashwagandha, Marigold">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-balance-scale"></i>
+                            Compare Crops
+                        </button>
+                    </form>
+                </div>
+
+                <div id="comparison-results" class="comparison-results">
+                    <div class="no-data">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>No comparison data</h3>
+                        <p>Select 2 to 5 crops and a location to compare their suitability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><i class="fas fa-seedling"></i> Smart Crop Advisor</h4>
+                <p>Empowering farmers with AI-driven agricultural insights for any crop</p>
+            </div>
+            <div class="footer-section">
+                <h4>Features</h4>
+                <ul>
+                    <li>Any Crop Recommendations</li>
+                    <li>Exotic Fruit Guidance</li>
+                    <li>Seasonal Analysis</li>
+                    <li>Soil Compatibility</li>
+                    <li>Market Insights</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Supported Crops</h4>
+                <ul>
+                    <li>Traditional Crops</li>
+                    <!-- <li>Dragon Fruit, Star Fruit</li> -->
+                    <li>Medicinal Plants</li>
+                    <li>Specialty Vegetables</li>
+                    <li>Aromatic Crops</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Smart Crop Advisor. Powered by AI for Unlimited Agricultural Possibilities.</p>
+        </div>
+    </footer>
+
+    <!-- Success/Error Toast -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
