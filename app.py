@@ -298,7 +298,7 @@ def get_crop_recommendation(prompt_text: str) -> str:
     response_text = ""
     try:
         for chunk in client.models.generate_content_stream(
-            model="gemini-2.0-flash-exp",
+            model="gemini-2.0-flash-lite",
             contents=contents,
             config=config
         ):
