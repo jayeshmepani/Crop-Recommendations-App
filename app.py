@@ -288,7 +288,7 @@ def get_crop_recommendation(prompt_text: str) -> str:
 
     config = types.GenerateContentConfig(
         system_instruction=SYSTEM_INSTRUCTION,
-        temperature=0.25,
+        temperature=0.3,
         top_p=0.9,
         top_k=40,
         response_mime_type="text/plain",
@@ -471,14 +471,14 @@ def compare_crops():
         contents = [types.Content(role="user", parts=[types.Part.from_text(text=comparison_prompt)])]
         config = types.GenerateContentConfig(
             system_instruction="Act as an agricultural consultant providing comprehensive crop comparison analysis. Output only clean HTML as requested.",
-            temperature=0.2,
+            temperature=0.3,
             top_p=0.8,
             tools=[types.Tool(googleSearch=types.GoogleSearch())],
         )
         
         response_text = ""
         for chunk in client.models.generate_content_stream(
-            model="gemini-2.0-flash-exp",
+            model="gemini-2.0-flash-lite",
             contents=contents,
             config=config
         ):
